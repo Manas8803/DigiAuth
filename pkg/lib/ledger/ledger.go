@@ -45,3 +45,14 @@ func RegisterDID(alias string, seed string, role string) (*acapy.RegisterDIDResp
 
 	return &res, nil
 }
+
+
+//^ HOW TO CALL THIS FUNCTION : 
+/*
+res, err := ledger.RegisterDID("firstuser", "firstuserseed", "STEWARD")
+	if err != nil {
+		log.Println("Error in registering DID", err)
+		return
+	}
+	log.Println(res)
+*/
