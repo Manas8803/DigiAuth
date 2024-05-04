@@ -1,5 +1,5 @@
 {
-  "app": "go mod download && go run deploy-scripts.go",
+  "app": "go mod download && go run DigiAuth.go",
   "watch": {
     "include": [
       "**"

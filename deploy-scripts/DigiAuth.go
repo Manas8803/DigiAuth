@@ -4,14 +4,12 @@ import (
 	"log"
 	"os"
 
-	"github.com/aws/aws-cdk-go/awscdk/awsapigateway"
-	"github.com/aws/aws-cdk-go/awscdk/awslambda"
 	"github.com/aws/aws-cdk-go/awscdk/v2"
-	"github.com/joho/godotenv"
-
-	// "github.com/aws/aws-cdk-go/awscdk/v2/awssqs"
+	"github.com/aws/aws-cdk-go/awscdk/v2/awsapigateway"
+	"github.com/aws/aws-cdk-go/awscdk/v2/awslambda"
 	"github.com/aws/constructs-go/constructs/v10"
 	"github.com/aws/jsii-runtime-go"
+	"github.com/joho/godotenv"
 )
 
 type DigiAuthStackProps struct {
@@ -25,17 +23,18 @@ func CreateDigiAuthStack(scope constructs.Construct, id string, props *DigiAuthS
 	}
 	stack := awscdk.NewStack(scope, &id, &sprops)
 
-	auth_handler := awslambda.NewFunction(stack, jsii.String("Auth"), &awslambda.FunctionProps{
-		Code:    awslambda.Code_FromAsset(jsii.String("")),
-		Runtime: awslambda.Runtime_GO_1_X(),
+	wallet_handler := awslambda.NewFunction(stack, jsii.String("Wallet"), &awslambda.FunctionProps{
+		Code:    awslambda.Code_FromAsset(jsii.String("../app"), nil),
+		Runtime: awslambda.Runtime_PROVIDED_AL2023(),
 		Handler: jsii.String("main"),
 		Timeout: awscdk.Duration_Seconds(jsii.Number(10)),
 		Environment: &map[string]*string{
+			//! TO BE ADDED IF NEEDED
 		},
 	})
 
-	awsapigateway.NewLambdaRestApi(stack, jsii.String("authTest"), &awsapigateway.LambdaRestApiProps{
-		Handler: auth_handler,
+	awsapigateway.NewLambdaRestApi(stack, jsii.String("Wallet_Gateway"), &awsapigateway.LambdaRestApiProps{
+		Handler: wallet_handler,
 	})
 
 
@@ -47,8 +46,9 @@ func main() {
 
 	app := awscdk.NewApp(nil)
 
-	CreateDigiAuthStack(app, "DeployScriptsStack", &DigiAuthStackProps{
+	CreateDigiAuthStack(app, "DigiAuthStack", &DigiAuthStackProps{
 		awscdk.StackProps{
+			StackName: jsii.String("DigiAuthStack"),
 			Env: env(),
 		},
 	})
