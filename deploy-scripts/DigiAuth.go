@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"os"
 
 	"github.com/aws/aws-cdk-go/awscdk/v2"
@@ -9,7 +8,6 @@ import (
 	"github.com/aws/aws-cdk-go/awscdk/v2/awslambda"
 	"github.com/aws/constructs-go/constructs/v10"
 	"github.com/aws/jsii-runtime-go"
-	"github.com/joho/godotenv"
 )
 
 type DigiAuthStackProps struct {
@@ -57,10 +55,10 @@ func main() {
 }
 
 func env() *awscdk.Environment {
-	err := godotenv.Load("../.env")
-	if err != nil {
-		log.Fatalln("Error loading .env file : ", err)
-	}
+	// err := godotenv.Load("../.env")
+	// if err != nil {
+	// 	log.Fatalln("Error loading .env file : ", err)
+	// }
 
 	return &awscdk.Environment{
 		Account: jsii.String(os.Getenv("CDK_DEFAULT_ACCOUNT")),
