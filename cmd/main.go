@@ -4,11 +4,11 @@ import (
 	"context"
 	"os"
 
+	"github.com/Manas8803/DigiAuth/pkg/main-app/routes"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
 	ginadapter "github.com/awslabs/aws-lambda-go-api-proxy/gin"
 	"github.com/gin-gonic/gin"
-	"github.com/swaggo/swag/example/basic/docs"
 )
 
 var ginLambda *ginadapter.GinLambda
@@ -21,7 +21,6 @@ func init() {
 	}
 
 	router := gin.Default()
-	docs.SwaggerInfo.BasePath = "/api/v1"
 
 	api := router.Group("/api/v1")
 	
