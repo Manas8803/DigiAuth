@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"log"
 	"os"
 
 	"github.com/Manas8803/DigiAuth/pkg/main-app/routes"
@@ -10,7 +9,6 @@ import (
 	"github.com/aws/aws-lambda-go/lambda"
 	ginadapter "github.com/awslabs/aws-lambda-go-api-proxy/gin"
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 )
 
 var ginLambda *ginadapter.GinLambda
@@ -37,10 +35,10 @@ func Handler(ctx context.Context, req events.APIGatewayProxyRequest) (events.API
 }
 
 func main() {
-	err := godotenv.Load("../../.env")
-	if err != nil {
-		log.Println("NOT ABLE TO FIND .env FILE..\nContinuing...")
-	}
+	// err := godotenv.Load("../../.env")
+	// if err != nil {
+	// 	log.Println("NOT ABLE TO FIND .env FILE..\nContinuing...")
+	// }
 	mode := os.Getenv("RELEASE_MODE")
 	if mode == "testing" {
 		TestRun();
