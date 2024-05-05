@@ -16,7 +16,9 @@
 
 # CDK asset staging directory
 .cdk.staging
-cdk.out
+deploy-scripts/cdk.out
+
+.DS_Store
 
 # Environment
 .env

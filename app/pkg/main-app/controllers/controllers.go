@@ -11,5 +11,5 @@ func CreateWallet(r *gin.Context) {
 
 	//! MAKE CHANGES HERE
 
-	r.JSON(http.StatusOK, responses.CreateWalletResponse{Message: "Successfully created Wallet", Data: map[string]interface{}{"Some Data":"DATA"}}) //! CHANGE THIS
+	r.JSON(http.StatusOK, responses.CreateWalletResponse{Message: "Successfully created Wallet", Data: map[string]interface{}{"Some Data":"Data1"}}) //! CHANGE THIS
 }
