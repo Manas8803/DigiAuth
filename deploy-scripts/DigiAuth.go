@@ -27,7 +27,7 @@ func CreateDigiAuthStack(scope constructs.Construct, id string, props *DigiAuthS
 		Handler: jsii.String("main"),
 		Timeout: awscdk.Duration_Seconds(jsii.Number(10)),
 		Environment: &map[string]*string{
-			//! TO BE ADDED IF NEEDED
+			"RELEASE_MODE": jsii.String("prod"),
 		},
 	})
 
