@@ -24,6 +24,7 @@ jobs:
           path: ./app/bootstrap
 
   deploy:
+    environment: DigiAuth
     needs: build
     runs-on: ubuntu-latest
     env:
