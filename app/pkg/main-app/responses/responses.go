@@ -1,7 +1,9 @@
 package responses
 
-type CreateWalletResponse struct {
-	Message string                 `json:"message"`
-	Data    map[string]interface{} `json:"data,omitempty"`
+type SuccessResponse struct {
+	Message string      `json:"message"`
+	Data    interface{} `json:"data,omitempty"`
 }
-
+type ErrorResponse struct {
+	Message string `json:"message"`
+}

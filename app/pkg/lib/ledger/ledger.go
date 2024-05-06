@@ -12,25 +12,19 @@ import (
 	"github.com/ldej/go-acapy-client"
 )
 
-type registerDIDRequest struct {
-	Alias string `json:"alias"`
-	Seed  string `json:"seed"`
-	Role  string `json:"role"`
+type RegisterDIDRequest struct {
+	Alias string `json:"alias" validate:"required,min=5,max=50"`
+	Seed  string `json:"seed" validate:"required,min=5"`
+	Role  string `json:"role" validate:"required,oneof=STEWARD ENDORSER"`
 	DID   string `json:"did"`
 }
 
-func RegisterDID(alias string, seed string, role string) (*acapy.RegisterDIDResponse, error) {
+func RegisterDID(req *RegisterDIDRequest) (*acapy.RegisterDIDResponse, error) {
 
-	var request registerDIDRequest
-	ledgerURL := os.Getenv("LEDGER_URL")+":9000/"
-	request = registerDIDRequest{
-		Alias: alias,
-		Seed:  seed, 
-		Role:  string(role),
-	}
+	ledgerURL := os.Getenv("LEDGER_URL") + ":9000/"
 
 	var res acapy.RegisterDIDResponse
-	body, _ := json.Marshal(request)
+	body, _ := json.Marshal(req)
 	resp, _ := http.Post(ledgerURL+"register", "application/json", bytes.NewBuffer(body))
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
@@ -47,8 +41,7 @@ func RegisterDID(alias string, seed string, role string) (*acapy.RegisterDIDResp
 	return &res, nil
 }
 
-
-//^ HOW TO CALL THIS FUNCTION : 
+//^ HOW TO CALL THIS FUNCTION :
 /*
 res, err := ledger.RegisterDID("firstuser", "firstuserseed", "STEWARD")
 	if err != nil {
