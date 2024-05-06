@@ -14,6 +14,7 @@ type DigiAuthStackProps struct {
 	awscdk.StackProps
 }
 
+const APP_NAME="DigiAuth"
 func CreateDigiAuthStack(scope constructs.Construct, id string, props *DigiAuthStackProps) awscdk.Stack {
 	var sprops awscdk.StackProps
 	if props != nil {
@@ -22,7 +23,7 @@ func CreateDigiAuthStack(scope constructs.Construct, id string, props *DigiAuthS
 	stack := awscdk.NewStack(scope, &id, &sprops)
 
 	wallet_handler := awslambda.NewFunction(stack, jsii.String("Wallet"), &awslambda.FunctionProps{
-		FunctionName: jsii.String("Wallet"),
+		FunctionName: jsii.String(APP_NAME+"Wallet"),
 		Code:    awslambda.Code_FromAsset(jsii.String("../app"), nil),
 		Runtime: awslambda.Runtime_PROVIDED_AL2023(),
 		Handler: jsii.String("main"),
