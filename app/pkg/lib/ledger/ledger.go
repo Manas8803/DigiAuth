@@ -7,6 +7,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/ldej/go-acapy-client"
 )
@@ -21,10 +22,10 @@ type registerDIDRequest struct {
 func RegisterDID(alias string, seed string, role string) (*acapy.RegisterDIDResponse, error) {
 
 	var request registerDIDRequest
-	ledgerURL := "http://127.0.0.1:9000/"
+	ledgerURL := os.Getenv("LEDGER_URL")+":9000/"
 	request = registerDIDRequest{
 		Alias: alias,
-		Seed:  seed, // Should be random in develop mode
+		Seed:  seed, 
 		Role:  string(role),
 	}
 
