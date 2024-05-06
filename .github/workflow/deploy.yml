@@ -29,6 +29,7 @@ jobs:
     env:
       CDK_DEFAULT_REGION: ${{ secrets.CDK_DEFAULT_REGION }}
       CDK_DEFAULT_ACCOUNT: ${{ secrets.CDK_DEFAULT_ACCOUNT }}
+      LEDGER_URL: ${{ secrets.LEDGER_URL }}
     steps:
       - uses: actions/checkout@v3
       - name: Configure AWS Credentials
