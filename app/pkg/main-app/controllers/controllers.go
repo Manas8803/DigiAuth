@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/Manas8803/DigiAuth/pkg/lib/ledger"
+	"github.com/Manas8803/DigiAuth/pkg/main-app/models"
 	"github.com/Manas8803/DigiAuth/pkg/main-app/responses"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator"
@@ -16,6 +17,18 @@ var validate = validator.New()
 func CreateWallet(r *gin.Context) {
 
 	//! MAKE CHANGES HERE
+	var req models.Wallet
+	if bindErr := r.BindJSON(&req); bindErr != nil {
+		log.Println(bindErr)
+		r.JSON(http.StatusBadGateway, responses.ErrorResponse{Message: "Invalid JSON"})
+		return
+	}
+
+	if validationErr := validate.Struct(req); validationErr != nil {
+		log.Println(validationErr)
+		r.JSON(http.StatusBadRequest, responses.ErrorResponse{Message: "Please provide the required fields"})
+		return
+	}
 
 	r.JSON(http.StatusOK, responses.SuccessResponse{Message: "Successfully created Wallet", Data: map[string]interface{}{"Some Data": "Data1"}}) //! CHANGE THIS
 }
