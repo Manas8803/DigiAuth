@@ -22,7 +22,7 @@ type RegisterDIDRequest struct {
 func RegisterDID(req *RegisterDIDRequest) (*acapy.RegisterDIDResponse, error) {
 
 	ledgerURL := os.Getenv("LEDGER_URL") + ":9000/"
-
+	log.Println(ledgerURL)
 	var res acapy.RegisterDIDResponse
 	body, _ := json.Marshal(req)
 	resp, _ := http.Post(ledgerURL+"register", "application/json", bytes.NewBuffer(body))

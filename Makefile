@@ -1,5 +1,8 @@
 .PHONY: build deploy clean all all-swap
 
+run:
+	cd app && npm run go
+
 build:
 	GOOS=linux GOARCH=amd64 go build -o ./app/bootstrap ./app/cmd/main.go  
 
