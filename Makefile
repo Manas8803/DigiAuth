@@ -3,6 +3,9 @@
 run:
 	cd app && npm run go
 
+install:
+	cd app && npm i	
+
 build:
 	GOOS=linux GOARCH=amd64 go build -o ./app/bootstrap ./app/cmd/main.go  
 

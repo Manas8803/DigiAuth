@@ -22,3 +22,7 @@ deploy-scripts/cdk.out
 
 # Environment
 .env
+
+# Node 
+app/node_modules
+app/package-lock.json
