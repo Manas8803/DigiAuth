@@ -47,8 +47,7 @@ func main() {
 		TestRun();
 		return
 	}
-	
-	gin.SetMode(gin.ReleaseMode)
+
 	lambda.Start(Handler)
 }
 

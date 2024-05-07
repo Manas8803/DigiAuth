@@ -27,7 +27,7 @@ func CreateDigiAuthStack(scope constructs.Construct, id string, props *DigiAuthS
 		Code:    awslambda.Code_FromAsset(jsii.String("../app"), nil),
 		Runtime: awslambda.Runtime_PROVIDED_AL2023(),
 		Handler: jsii.String("main"),
-		Timeout: awscdk.Duration_Seconds(jsii.Number(10)),
+		Timeout: awscdk.Duration_Seconds(jsii.Number(20)),
 		Environment: &map[string]*string{
 			"RELEASE_MODE": jsii.String("prod"),
 			"LEDGER_URL": jsii.String(os.Getenv("LEDGER_URL")),
