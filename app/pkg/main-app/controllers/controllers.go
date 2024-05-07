@@ -16,7 +16,6 @@ var validate = validator.New()
 
 func CreateWallet(r *gin.Context) {
 
-	//! MAKE CHANGES HERE
 	var req models.Wallet
 	if bindErr := r.BindJSON(&req); bindErr != nil {
 		log.Println(bindErr)

@@ -1,10 +1,9 @@
 CREATE TABLE Wallet (
-    id SERIAL PRIMARY KEY,
-    did VARCHAR(255),
-    email VARCHAR(255),
+    id SERIAL PRIMARY KEY NOT NULL,
+    did VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
     FOREIGN KEY (email) REFERENCES users(email)
 );
-
 
 CREATE TABLE Certificate (
     id SERIAL PRIMARY KEY,

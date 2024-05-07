@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/Manas8803/DigiAuth/pkg/lib/configs"
 	"github.com/Manas8803/DigiAuth/pkg/main-app/routes"
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -19,14 +20,18 @@ func init() {
 
 	prod := os.Getenv("RELEASE_MODE")
 	if prod != "prod" {
-		return 
+		return
 	}
-	
+
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 
 	api := router.Group("/api/v1")
-	
+
+	//! UNCOMMENT THIS FOR DEPLOYMENT ONLY
+	// configs.ConnectDB()
+	//!
+
 	routes.LedgerRoute(api)
 
 	ginLambda = ginadapter.New(router)
@@ -55,6 +60,8 @@ func TestRun() {
 	router := gin.Default()
 
 	api := router.Group("/api/v1")
+
+	configs.ConnectDB()
 
 	routes.LedgerRoute(api)
 	router.Run("localhost:8000")
