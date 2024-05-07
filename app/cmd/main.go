@@ -18,8 +18,8 @@ var ginLambda *ginadapter.GinLambda
 
 func init() {
 
-	prod := os.Getenv("RELEASE_MODE")
-	if prod != "prod" {
+	mode := os.Getenv("RELEASE_MODE")
+	if mode != "prod" {
 		return
 	}
 
