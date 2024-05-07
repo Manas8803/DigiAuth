@@ -13,6 +13,7 @@ import (
 	"github.com/Manas8803/DigiAuth/pkg/main-app/responses"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator"
+	"github.com/google/uuid"
 )
 
 var validate = validator.New()
@@ -56,11 +57,13 @@ func CreateWallet(r *gin.Context) {
 	// }
 	//!
 
+	seed := uuid.NewString()
+	seed = seed[:10]
 	//* Generate DID
 	var req_did = ledger.RegisterDIDRequest{
-		Alias: "DID",
-		Seed:  req.Email,
-		Role:  "STEWARD",
+		Alias: req.Email,
+		Seed:  seed,
+		Role:  "ENDORSER",
 	}
 	res, registerDidErr := ledger.RegisterDID(&req_did)
 	if registerDidErr != nil {
@@ -80,9 +83,12 @@ func CreateWallet(r *gin.Context) {
 		return
 	}
 
-	r.JSON(http.StatusOK, responses.SuccessResponse{Message: "Successfully created Wallet", Data: map[string]interface{}{"Wallet-ID": wallet.ID}})
+	r.JSON(http.StatusOK, responses.SuccessResponse{Message: "Successfully created Wallet", Data: map[string]interface{}{"Wallet ID": wallet.ID}})
 }
 
 func IssueCeritificate(r *gin.Context) {
+	//* Configure header for cors
+	r.Writer.Header().Set("Access-Control-Allow-Headers", "*")
+	r.Writer.Header().Set("Access-Control-Allow-Origin", "*")
 
 }

@@ -28,9 +28,7 @@ func init() {
 
 	api := router.Group("/api/v1")
 
-	//! UNCOMMENT THIS FOR DEPLOYMENT ONLY
-	// configs.ConnectDB()
-	//!
+	configs.ConnectDB()
 
 	routes.LedgerRoute(api)
 

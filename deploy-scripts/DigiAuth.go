@@ -36,6 +36,11 @@ func CreateDigiAuthStack(scope constructs.Construct, id string, props *DigiAuthS
 
 	awsapigateway.NewLambdaRestApi(stack, jsii.String("Wallet_Gateway"), &awsapigateway.LambdaRestApiProps{
 		Handler: wallet_handler,
+		DefaultCorsPreflightOptions: &awsapigateway.CorsOptions{
+			AllowOrigins: awsapigateway.Cors_ALL_ORIGINS(),
+			AllowMethods: awsapigateway.Cors_ALL_METHODS(),
+			AllowHeaders: awsapigateway.Cors_DEFAULT_HEADERS(),
+		},
 	})
 
 

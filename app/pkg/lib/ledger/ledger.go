@@ -21,7 +21,7 @@ type RegisterDIDRequest struct {
 
 func RegisterDID(req *RegisterDIDRequest) (*acapy.RegisterDIDResponse, error) {
 
-	ledgerURL := os.Getenv("LEDGER_URL") + ":9000/"
+	ledgerURL := os.Getenv("LEDGER_URL")
 	log.Println(ledgerURL)
 	var res acapy.RegisterDIDResponse
 	body, _ := json.Marshal(req)
@@ -40,13 +40,3 @@ func RegisterDID(req *RegisterDIDRequest) (*acapy.RegisterDIDResponse, error) {
 
 	return &res, nil
 }
-
-//^ HOW TO CALL THIS FUNCTION :
-/*
-res, err := ledger.RegisterDID("firstuser", "firstuserseed", "STEWARD")
-	if err != nil {
-		log.Println("Error in registering DID", err)
-		return
-	}
-	log.Println(res)
-*/
