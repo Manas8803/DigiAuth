@@ -8,5 +8,5 @@ import (
 
 func LedgerRoute(router *gin.RouterGroup) {
 	router.POST("/wallet", controller.CreateWallet)
-	router.POST("/did", controller.GenerateDID)
+	router.POST("/certificate", controller.IssueCeritificate)
 }

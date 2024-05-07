@@ -15,6 +15,15 @@ type Certificate struct {
 	Issuedate    pgtype.Date
 }
 
+type User struct {
+	ID         int64
+	Email      string
+	Password   string
+	Isverified bool
+	Role       string
+	Otp        string
+}
+
 type Wallet struct {
 	ID    int32
 	Did   string

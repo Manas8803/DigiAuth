@@ -2,7 +2,7 @@ package models
 
 type Wallet struct {
 	Id    int    `json:id"`
-	Did   string `json:"did" validate:"required"`
+	Did   string `json:"did"`
 	Email string `json:"email" validate:"required"`
 }
 
