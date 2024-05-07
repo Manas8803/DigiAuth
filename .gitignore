@@ -15,7 +15,7 @@
 !go.sum
 
 # CDK asset staging directory
-.cdk.staging
+deploy-scripts/.cdk.staging
 deploy-scripts/cdk.out
 
 .DS_Store
